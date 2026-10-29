@@ -37,6 +37,11 @@ def evaluate(dataset,matrix_path,questions_path,limit=None,resume=None):
         while not stop:
             peak=max(peak,psutil.virtual_memory().used);time.sleep(.5)
     thread=threading.Thread(target=monitor,daemon=True);thread.start()
+    # Prevent automatic idle sleep only for this process's active evaluation.
+    # Explicit lid-close/manual sleep remains controlled by Windows/user policy.
+    if __import__('sys').platform=='win32':
+        import ctypes
+        ctypes.windll.kernel32.SetThreadExecutionState(0x80000001)
     try:
         for model in matrix['models']:
             for wait_attempt in range(360):
@@ -76,6 +81,7 @@ def evaluate(dataset,matrix_path,questions_path,limit=None,resume=None):
             if limit is not None and len(runs)>=limit: break
     finally:
         stop=True;thread.join(timeout=2)
+        if __import__('sys').platform=='win32':ctypes.windll.kernel32.SetThreadExecutionState(0x80000000)
     groups={}
     for r in runs:groups.setdefault((r['model'],r['mode'],r['id']),[]).append(r)
     changed=[]

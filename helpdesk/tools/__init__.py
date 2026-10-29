@@ -107,3 +107,23 @@ def draft_email(kind,recipient,student_facts,dates):
     if recipient!='[instructor email]' and not re.fullmatch(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}',recipient):
         raise ValueError('Invalid recipient')
     return {'recipient':recipient,'subject':f'Request: {kind}', 'body':f'Dear Professor,\n\nI am [student name], [roll number], enrolled in [course].\n\nI request {kind} for {dates or "[start date] to [end date]"}. {student_facts}\n\nPlease let me know the applicable process and any supporting information required.\n\nThank you,\n[student name]\n[roll number]','missing_fields':['Confirm student identity, course, dates, recipient and facts before use.'],'label':'Draft — review before use'}
+
+def draft_academic_request(question,recipient,course):
+    """Preserve the student's request when it is not a leave/makeup template."""
+    draft=draft_email('academic request',recipient,'','')
+    quiz=re.search(r'\bquiz\s*(\d+)\b',question,re.I)
+    postponement=bool(re.search(r'postpon|reschedul',question,re.I))
+    if postponement:
+        assessment='Quiz '+quiz[1] if quiz else 'the assessment'
+        subject=f'Request to postpone {assessment} — {course}'
+        request=f'I would like to request a postponement of {assessment} for {course}. Please let me know whether rescheduling would be possible and which alternative date would be suitable.'
+        # Preserve supplied reasons/dates verbatim rather than inventing them.
+        detail=re.search(r'\b(?:because|due to|since)\s+(.+)',question,re.I)
+        if detail:request+='\n\nReason provided: '+detail[1].strip()
+        dates=re.findall(r'\b\d{4}-\d{2}-\d{2}\b|\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b',question)
+        if dates:request+='\n\nRequested date details: '+', '.join(dates)+'.'
+    else:
+        subject=f'Academic request — {course}'
+        request='I would appreciate your consideration of the following request:\n\n'+question.strip()
+    draft.update(subject=subject,body=f'Dear Professor,\n\nI am [student name], [roll number], enrolled in {course}.\n\n{request}\n\nThank you for your consideration.\n\nRegards,\n[student name]\n[roll number]',missing_fields=['Confirm student identity, recipient and request details before use.'])
+    return draft

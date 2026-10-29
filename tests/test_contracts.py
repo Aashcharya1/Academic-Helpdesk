@@ -61,6 +61,16 @@ def test_draft_missing_contact():
     assert 'illness' not in d['body']
     with pytest.raises(ValueError):draft_email('leave','not an email','','')
 
+def test_postponement_draft_preserves_assessment_and_course():
+    from helpdesk.tools import draft_academic_request
+    draft=draft_academic_request('Write me a draft mail to ask to postpone Quiz 5 of Computer Vision CSL7360','[instructor email]','CSL7360')
+    assert 'Quiz 5' in draft['subject'] and 'CSL7360' in draft['subject']
+    assert 'postponement of Quiz 5' in draft['body']
+    assert 'leave' not in draft['body'] and '[start date]' not in draft['body']
+    assert 'illness' not in draft['body']
+    other=draft_academic_request('Ask for feedback on my project.','[instructor email]','CSL7360')
+    assert 'feedback on my project' in other['body'] and 'leave' not in other['body']
+
 def test_sensitive_log_redaction():
     assert 'diagnosis' not in redact('My diagnosis is private; I need medical leave')
     assert 'someone@iitj.ac.in' not in redact('Who is someone@iitj.ac.in?')

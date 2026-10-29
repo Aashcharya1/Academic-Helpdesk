@@ -4,7 +4,7 @@ from filelock import FileLock
 from .schemas import Context, Response, ToolResult
 from .storage import log_unanswered, save_trace,load_session,save_session,redact
 from .rag import Retriever
-from .tools import DataTools, draft_email, normalize
+from .tools import DataTools, draft_email, draft_academic_request, normalize
 
 MODEL_LOCK=threading.Lock()
 PROCESS_LOCK=FileLock(str(ROOT/'.cache/inference.lock'),timeout=10)
@@ -202,6 +202,8 @@ class HelpdeskService:
                         if end>=begin:supplied_dates=dates_match[1]+' to '+dates_match[2]
                     except ValueError:pass
                 draft=draft_email(allowed_kind,recipient,facts,supplied_dates)
+                if re.search(r'postpon|reschedul',q,re.I) or not re.search(r'\bleave\b|makeup|make.up',q,re.I):
+                    draft=draft_academic_request(q,recipient,course_ref)
                 draft['body']=draft['body'].replace('[course]',course_ref)
                 duration=re.search(r'\b(\d+)\s+days?\b',q,re.I)
                 if duration and not re.search(r'\b'+duration[1]+r'\s+days?\b',draft['body'],re.I):draft['body']=draft['body'].replace('Please let me know',f'The requested duration is {duration[1]} day(s).\n\nPlease let me know')
