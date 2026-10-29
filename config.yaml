@@ -1,0 +1,11 @@
+term: AY 2026-27, Semester-I
+cohort: '2023'
+program: ''
+snapshot_date: '2026-10-29'
+ollama_url: http://127.0.0.1:11434
+embedding_model: embeddinggemma:300m
+chat_models: [qwen3:8b, llama3.1:8b]
+request_timeout: 360
+max_data_calls: 6
+max_specialist_calls: 3
+max_llm_calls: 10

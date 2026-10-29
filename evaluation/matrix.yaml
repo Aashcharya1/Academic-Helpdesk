@@ -1,0 +1,11 @@
+modes: [single, multi]
+models: ['qwen3:8b', 'llama3.1:8b']
+seeds: [11, 22, 33]
+temperature: 0.2
+context_tokens: 4096
+output_tokens: 700
+gpu_layers: 0
+cpu_threads: 6
+prompt_cache_mib: 512
+response_cache: false
+human_review_required: true

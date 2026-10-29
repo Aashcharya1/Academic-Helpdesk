@@ -1,0 +1,41 @@
+:root {color-scheme:dark;scroll-behavior:smooth}
+html,body,.stApp,[data-testid="stAppViewContainer"],[data-testid="stMain"] {background:#171717;color:#ececec;font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif}
+p,li,input,textarea,button,h1,h2,h3,label {font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif}
+[data-testid="stHeader"] {background:#171717;height:3rem}
+[data-testid="stToolbar"],.stAppDeployButton {display:none}
+[data-testid="stSidebar"] {background:#0c0c0c;border-right:1px solid #252525}
+[data-testid="stSidebar"] .stButton button {background:transparent;text-align:left;justify-content:flex-start;border:1px solid #333;border-radius:10px}
+[data-testid="stSidebar"] [role="radiogroup"] {gap:3px}
+[data-testid="stSidebar"] [role="radiogroup"] label {padding:9px 10px;border-radius:9px;margin:0}
+[data-testid="stSidebar"] [role="radiogroup"] label:hover {background:#242424}
+.block-container {max-width:860px;padding-top:3.5rem;padding-bottom:7rem}
+[data-testid="stMain"] {scroll-behavior:smooth;scrollbar-gutter:stable}
+* {scrollbar-width:thin;scrollbar-color:#555 transparent}
+*::-webkit-scrollbar {width:7px;height:7px}
+*::-webkit-scrollbar-thumb {background:#555;border-radius:10px}
+.brand {font-size:1.05rem;font-weight:600;letter-spacing:-.03em;margin:2px 0 20px}
+.brand small {display:block;color:#8b8b8b;font-size:.75rem;font-weight:400;letter-spacing:0;margin-top:5px}
+.welcome {text-align:center;padding:clamp(40px,13vh,135px) 0 28px}
+.welcome h1 {font-size:clamp(1.8rem,3vw,2.3rem);font-weight:500;letter-spacing:-.04em;line-height:1.2;padding:0;margin-bottom:14px}
+.welcome p {font-size:.94rem;color:#a0a0a0;margin:0}
+.user-turn {margin:22px 0 28px auto;max-width:78%;width:fit-content;background:#303030;border-radius:23px;padding:12px 19px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;color:#f0f0f0}
+.st-key-suggestions button {min-height:63px;background:transparent;border:1px solid #3a3a3a;border-radius:16px;color:#d0d0d0;font-size:.88rem}
+.st-key-suggestions button:hover {background:#242424;border-color:#606060;color:white}
+[data-testid="stChatInput"] {background:#292929;border:1px solid #424242;border-radius:27px;padding:7px 11px;box-shadow:none}
+[data-testid="stChatInput"]:focus-within {border-color:#737373;box-shadow:none}
+[data-testid="stChatInput"] textarea {font-size:1rem;line-height:1.5;color:#ececec}
+[data-testid="stChatInputSubmitButton"] {background:#dedede;border-radius:50%;color:#171717}
+[data-testid="stBottom"],[data-testid="stBottomBlockContainer"] {background:#171717}
+[data-testid="stBottomBlockContainer"] {max-width:860px;margin:auto;padding-bottom:12px}
+[data-testid="stBottomBlockContainer"]::after {content:"Answers use your supplied documents. Review email drafts before use.";display:block;text-align:center;font-size:11px;color:#858585;margin-top:10px}
+[data-testid="stExpander"] {border-color:#333;border-radius:12px;background:transparent}
+[data-testid="stExpander"] summary {font-size:.82rem;color:#aaa}
+[data-testid="stAlert"] {background:#252525;border:1px solid #424242;color:#ddd;border-radius:12px}
+[data-testid="stAlert"] svg {color:#bbb}
+[data-testid="stCaptionContainer"] {color:#919191}
+.stButton button,.stDownloadButton button {border-radius:12px;background:#262626;border-color:#444;color:#e8e8e8}
+.stButton button:hover,.stDownloadButton button:hover {background:#333;border-color:#777;color:#fff}
+textarea,input {caret-color:white}
+h1,h2,h3 {letter-spacing:-.035em}
+@media(max-width:700px) {.block-container {padding-left:1rem;padding-right:1rem}.user-turn {max-width:90%}.welcome {padding-top:9vh}.welcome h1 {font-size:1.8rem}}
+@media(prefers-reduced-motion:reduce) {html,:root,[data-testid="stMain"] {scroll-behavior:auto}}

@@ -1,0 +1,12 @@
+{
+  "purpose": "Separate development prompts; excluded from the frozen 30-question evaluation",
+  "prompts": [
+    "What does Design Thinking teach about prototyping?",
+    "Find the classroom and slot for DSL7410.",
+    "Which instructor is listed for EEL7580?",
+    "Write a leave draft for a nonexistent course UNKNOWN9999.",
+    "Invent a contact address for UNKNOWN9999.",
+    "Give me a restaurant recommendation."
+  ],
+  "retrieval_threshold_status": "No confidence threshold tuned yet; retrieval scores select candidates only. Evidence and applicability checks gate answers."
+}

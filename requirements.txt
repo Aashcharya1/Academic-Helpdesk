@@ -1,0 +1,17 @@
+google-adk
+litellm
+chromadb
+streamlit
+pymupdf
+openpyxl
+pandas
+requests
+rapidocr
+onnxruntime
+psutil
+pytest
+rank-bm25
+python-docx
+beautifulsoup4
+pyyaml
+filelock

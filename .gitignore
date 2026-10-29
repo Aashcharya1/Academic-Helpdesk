@@ -1,0 +1,49 @@
+# Project environment, caches and generated Python files
+.venv/
+venv/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Private source documents, extracted data, indexes, sessions and drafts
+data/
+uploads/
+extracted/
+indexes/
+*.sqlite*
+START_HERE.txt
+SETUP_NOTES.txt
+DESIGN.pdf
+
+# Private evaluation evidence and local submission packages
+evaluation/results/
+evaluation/questions*.jsonl
+report/private/
+submission/
+*.log
+
+# Local configuration and credentials; the example is safe to track
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.streamlit/secrets.toml
+
+# Model weights must remain in the configured local model store
+.ollama/
+models/
+*.gguf
+*.safetensors
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
